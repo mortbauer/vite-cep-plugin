@@ -12,7 +12,7 @@ export const signZXP = (
   zxpDir: string,
   tmpDir: string
 ) => {
-  const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : `./ZXPSignCmd`;
+  const zxpCmd = os.platform() == "win32" ? `ZXPSignCmd` : os.platform() == "linux" ? `wine ${process.env.ZXPSignCmd}` : `./ZXPSignCmd`;
   const name = config.id;
   const data = config.zxp;
   const output = path.join(zxpDir, `${name}.zxp`);
